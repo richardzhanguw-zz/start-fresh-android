@@ -40,10 +40,10 @@ public class ToDoItemTodayRVAdapter extends RecyclerView.Adapter<ToDoItemTodayRV
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.additionalInfo.getVisibility() == View.GONE) {
-                    holder.additionalInfo.setVisibility(View.VISIBLE);
+                if (holder.taskExpanded.getVisibility() == View.GONE) {
+                    holder.taskExpanded.setVisibility(View.VISIBLE);
                 }else{
-                    holder.additionalInfo.setVisibility(View.GONE);
+                    holder.taskExpanded.setVisibility(View.GONE);
                 }
 
             }
@@ -59,14 +59,12 @@ public class ToDoItemTodayRVAdapter extends RecyclerView.Adapter<ToDoItemTodayRV
         TextView taskExpanded;
         TextView taskDetails;
         TextView timeOfTask;
-        RelativeLayout additionalInfo;
         public ToDoItemTodayViewHolder(final View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.card_view);
             taskExpanded = (TextView)itemView.findViewById(R.id.task_expanded);
             taskDetails = (TextView)itemView.findViewById(R.id.task_details);
             timeOfTask = (TextView)itemView.findViewById(R.id.time_of_task);
-            additionalInfo = (RelativeLayout)itemView.findViewById(R.id.additional_info);
         }
 
     }
