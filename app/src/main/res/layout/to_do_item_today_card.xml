@@ -17,19 +17,6 @@
             android:layout_height="80dp"
             android:orientation="horizontal"
             >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:id="@+id/task_pic"
-                android:src = "@drawable/task"
-                android:layout_above="@+id/time_of_task"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="17dp"
-                android:layout_gravity="center_vertical" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

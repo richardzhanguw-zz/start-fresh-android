@@ -6,12 +6,6 @@
     android:orientation="vertical"
     tools:context="com.example.richard.startfresh.Fragments.DashboardFragment">
 
-    <AnalogClock
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity = "center"
-        android:id="@+id/analogClock" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"

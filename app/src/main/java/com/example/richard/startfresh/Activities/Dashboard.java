@@ -44,8 +44,15 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
         //set up tab layout
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        final int[] tabIcons = new int[]{
+                R.drawable.fragment1icon,
+                R.drawable.fragment1icon,
+                R.drawable.fragment1icon
+        };
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
-
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
