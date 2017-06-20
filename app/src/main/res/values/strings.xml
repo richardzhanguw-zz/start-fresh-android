@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Start Fresh!</string>
-    <string name="google_play_services_key">your_google_play_services_key</string>
+    <string name="google_play_services_key">key</string>
 </resources>

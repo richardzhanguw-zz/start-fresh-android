@@ -134,7 +134,6 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
                                     gifImageView.setBackgroundResource(R.drawable.weather_sunny);
                                     break;
                             };
-                            //weather.getConditions()[0] == Weather.CONDITION_CLOUDY
 
                         }
                     });

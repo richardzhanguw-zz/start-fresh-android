@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
@@ -52,6 +53,7 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -63,9 +65,10 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
     }
 
     public void onAddNewTaskClicked(View v) {
-        final EditText taskTime = new EditText(this);
-        final EditText descriptionBox = new EditText(this);
-        final EditText taskNameBox = new EditText(this);
+        View dialogView = View.inflate(this, R.layout.add_new_task_dialog_box, null);
+        final EditText taskTime = (EditText) dialogView.findViewById(R.id.taskTimeField);
+        final EditText descriptionBox = (EditText) dialogView.findViewById(R.id.taskDescriptionField);
+        final EditText taskNameBox = (EditText) dialogView.findViewById(R.id.taskNameField);
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -83,43 +86,13 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                 }
             }
         };
-        AlertDialog ad = new AlertDialog.Builder(this)
-                .setNegativeButton("Cancel", dialogClickListener)
+        AlertDialog.Builder  adbuilder = new AlertDialog.Builder(this);
+        adbuilder.setNegativeButton("Cancel", dialogClickListener)
                 .setPositiveButton("Add Task", dialogClickListener)
-                .create();
-
-        ad.setCancelable(true);
-        ad.setTitle("Add a New Task For Tomorrow");
-        ad.setMessage("Add a new task for tomorrow here.");
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-
-        taskNameBox.setHint("Task Name");
-        layout.addView(taskNameBox);
-        descriptionBox.setHint("Task Description");
-        layout.addView(descriptionBox);
-        taskTime.setHint("Time of Task");
-        taskTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-                TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(Dashboard.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        taskTime.setText(selectedHour + ":" + selectedMinute);
-                    }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
-            }
-        });
-
-        layout.addView(taskTime);
-        ad.setView(layout);
-        ad.show();
+                .setCancelable(true)
+                .setTitle("Add a New Task For Tomorrow")
+                .setView(dialogView)
+                .show();
     }
 
     @Override
