@@ -5,13 +5,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.richard.startfresh.Fragments.DashboardFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
+        android:layout_height="200dp"
+        android:orientation="vertical"
         android:background="@color/colorPrimary"
         android:id="@+id/linearLayout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/weather_gifview"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/weather_sunny"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/weather_test_textview"
+                android:text="weather today"
+                android:textColor="#FFFFFF"/>
+        </RelativeLayout>
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

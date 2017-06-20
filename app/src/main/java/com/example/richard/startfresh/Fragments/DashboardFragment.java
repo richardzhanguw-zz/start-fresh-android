@@ -1,32 +1,38 @@
 package com.example.richard.startfresh.Fragments;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.richard.startfresh.AdaptersAndOtherClasses.ToDoItemToday;
 import com.example.richard.startfresh.AdaptersAndOtherClasses.ToDoItemTodayRVAdapter;
 import com.example.richard.startfresh.R;
+import com.google.android.gms.awareness.Awareness;
+import com.google.android.gms.awareness.snapshot.WeatherResult;
+import com.google.android.gms.awareness.state.Weather;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DashboardFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DashboardFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DashboardFragment extends Fragment {
+import pl.droidsonroids.gif.GifImageView;
+
+
+public class DashboardFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,6 +42,7 @@ public class DashboardFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private ToDoItemTodayRVAdapter rvAdapter;
+    public GoogleApiClient mGoogleApiClient;
 
     public ToDoItemTodayRVAdapter getRvAdapter(){
         return this.rvAdapter;
@@ -72,6 +79,11 @@ public class DashboardFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mGoogleApiClient = new GoogleApiClient.Builder(getActivity().getApplicationContext())
+                .enableAutoManage(getActivity(),
+                        this)
+                .addApi(Awareness.API).build();
+        mGoogleApiClient.connect();
     }
     public ArrayList getListOfItems(){
         return this.listOfItems;
@@ -80,7 +92,8 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        final View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        final GifImageView gifImageView = (GifImageView) view.findViewById(R.id.weather_gifview);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
@@ -92,6 +105,40 @@ public class DashboardFragment extends Fragment {
          rvAdapter = new ToDoItemTodayRVAdapter(listOfItems);
         rView.setLayoutManager(llm);
         rView.setAdapter(rvAdapter);
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Log.d("weather", "permission check passed");
+            Awareness.SnapshotApi.getWeather(mGoogleApiClient)
+                    .setResultCallback(new ResultCallback<WeatherResult>() {
+                        @Override
+                        public void onResult(@NonNull WeatherResult weatherResult) {
+                            Weather weather = weatherResult.getWeather();
+                            TextView weatherTV = (TextView) view.findViewById(R.id.weather_test_textview);
+                            weatherTV.setText("Current Temperature: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius" + " Feels like: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius");
+                            switch(weather.getConditions()[0]) {
+                                case Weather.CONDITION_CLEAR:
+                                    gifImageView.setBackgroundResource(R.drawable.weather_sunny);
+                                    break;
+                                case Weather.CONDITION_CLOUDY:
+                                    gifImageView.setBackgroundResource(R.drawable.weather_cloudy);
+                                    break;
+                                case Weather.CONDITION_SNOWY:
+                                    gifImageView.setBackgroundResource(R.drawable.weather_snowy);
+                                    break;
+                                case Weather.CONDITION_RAINY:
+                                    gifImageView.setBackgroundResource(R.drawable.weather_rainy);
+                                    break;
+                                case Weather.CONDITION_STORMY:
+                                    break;
+                                default:
+                                    gifImageView.setBackgroundResource(R.drawable.weather_sunny);
+                                    break;
+                            };
+                            //weather.getConditions()[0] == Weather.CONDITION_CLOUDY
+
+                        }
+                    });
+        }
         return view;
     }
 
@@ -112,6 +159,11 @@ public class DashboardFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 
     /**
