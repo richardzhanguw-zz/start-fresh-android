@@ -16,4 +16,16 @@ public class ToDoItemToday {
         this.timeOfTask = timeOfTask;
         this.taskExpanded = taskExpanded;
     }
+
+    public String getTimeOfTask(){
+        return timeOfTask;
+    }
+
+    public String getTaskName(){
+        return taskName;
+    }
+
+    public String getTaskDetails(){
+        return taskDetails;
+    }
 }

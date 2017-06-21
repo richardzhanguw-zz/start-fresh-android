@@ -2,8 +2,10 @@ package com.example.richard.startfresh.Activities;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -26,8 +28,11 @@ import com.example.richard.startfresh.Fragments.SecondFragment;
 import com.example.richard.startfresh.Fragments.ThirdFragment;
 import com.example.richard.startfresh.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Dashboard extends AppCompatActivity implements DashboardFragment.OnFragmentInteractionListener, SecondFragment.OnFragmentInteractionListener, ThirdFragment.OnFragmentInteractionListener {
@@ -53,7 +58,6 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -75,8 +79,24 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         dashFrag = (DashboardFragment) adapter.getItem(0);
-                        dashFrag.getListOfItems().add(new ToDoItemToday("Task #1", taskNameBox.getText().toString(),"Tomorrow at " + taskTime.getText().toString(), taskNameBox.getText().toString()));
+                        ToDoItemToday newTask = new ToDoItemToday("Task for Tomorrow", taskNameBox.getText().toString(),"Tomorrow at " + taskTime.getText().toString(), taskNameBox.getText().toString());
+                        dashFrag.getListOfItems().add(newTask);
                         dashFrag.getRvAdapter().notifyDataSetChanged();
+                        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        Calendar calendar = Calendar.getInstance();
+                        Date today = calendar.getTime();
+                        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        calendar.add(Calendar.DAY_OF_YEAR, 1);
+                        Date tomorrow = calendar.getTime();
+                        String tomorrowAsString = dateFormat.format(tomorrow);
+                        calendar.add(Calendar.DAY_OF_YEAR, 1);
+                        editor.putInt(tomorrowAsString, sharedPref.getInt(tomorrowAsString, 0) + 1);
+                        int currentTaskNumberAdded = sharedPref.getInt(tomorrowAsString, 0);
+                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"name", newTask.getTaskName());
+                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"details", newTask.getTaskDetails());
+                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"time", newTask.getTimeOfTask());
+                        editor.commit();
                         Snackbar.make(findViewById(R.id.base_layout_main), "Task Added For Tomorrow!", Snackbar.LENGTH_LONG).show();
                         break;
 

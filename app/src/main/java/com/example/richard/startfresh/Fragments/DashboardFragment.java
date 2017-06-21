@@ -2,11 +2,11 @@ package com.example.richard.startfresh.Fragments;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,7 +27,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -79,6 +83,18 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        Calendar calendar = Calendar.getInstance();
+        Date today = calendar.getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        String todayAsString = dateFormat.format(today);
+        listOfItems= new ArrayList<>();
+        if (sharedPref.getInt(todayAsString, 0) > 0){
+            for(int i = 1; i < sharedPref.getInt(todayAsString, 0)+1; i ++){
+                ToDoItemToday task = new ToDoItemToday("task", sharedPref.getString("task" + String.valueOf(i)+"-name", "Task Summary"), sharedPref.getString("task" + String.valueOf(i)+"-time", "Task Time"), sharedPref.getString("task" + String.valueOf(i)+"-details", "Task Details"));
+                listOfItems.add(task);
+            }
+        }
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity().getApplicationContext())
                 .enableAutoManage(getActivity(),
                         this)
@@ -98,10 +114,9 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
-        listOfItems= new ArrayList<>();
-        listOfItems.add(new ToDoItemToday("Task #1", "Buy Groceries","13:00", "Need to get: eggs, milk, apples, potatoes, orange juice, and a new toothbrush"));
-        listOfItems.add(new ToDoItemToday("Task #2", "Play Basketball", "15:00", "Meet up with friends before hand at the plaza to get lunch first. CIF is open for ball starting at 2pm"));
-        listOfItems.add(new ToDoItemToday("Task #3", "Work on New App", "18:30", "Get the geolocation and videos on the app working before working on other aspects."));
+        //listOfItems.add(new ToDoItemToday("Task #1", "Buy Groceries","13:00", "Need to get: eggs, milk, apples, potatoes, orange juice, and a new toothbrush"));
+        //listOfItems.add(new ToDoItemToday("Task #2", "Play Basketball", "15:00", "Meet up with friends before hand at the plaza to get lunch first. CIF is open for ball starting at 2pm"));
+        //listOfItems.add(new ToDoItemToday("Task #3", "Work on New App", "18:30", "Get the geolocation and videos on the app working before working on other aspects."));
          rvAdapter = new ToDoItemTodayRVAdapter(listOfItems);
         rView.setLayoutManager(llm);
         rView.setAdapter(rvAdapter);
