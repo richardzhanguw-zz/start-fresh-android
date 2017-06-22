@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/weather_test_textview"
                 android:text="weather today"
+                android:fontFamily="sans-serif-medium"
                 android:textColor="#FFFFFF"/>
         </RelativeLayout>
         <android.support.v7.widget.AppCompatTextView
@@ -33,6 +34,7 @@
             android:gravity="center_horizontal"
             android:textColor="#FFFFFF"
             android:text = "Today's Tasks"
+            android:fontFamily="sans-serif-medium"
             android:paddingTop="10dp"/>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
