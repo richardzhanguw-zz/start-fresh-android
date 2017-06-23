@@ -31,11 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="30sp"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:textColor="#FFFFFF"
             android:text = "Today's Tasks"
-            android:fontFamily="sans-serif-medium"
-            android:paddingTop="10dp"/>
+            android:fontFamily="sans-serif-medium" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
