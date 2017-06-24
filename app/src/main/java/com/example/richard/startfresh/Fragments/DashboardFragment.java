@@ -38,7 +38,6 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class DashboardFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public ArrayList listOfItems;
@@ -55,7 +54,6 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
     private OnFragmentInteractionListener mListener;
 
     public DashboardFragment() {
-        // Required empty public constructor
     }
 
     /**
@@ -115,8 +113,6 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         //listOfItems.add(new ToDoItemToday("Task #1", "Buy Groceries","13:00", "Need to get: eggs, milk, apples, potatoes, orange juice, and a new toothbrush"));
-        //listOfItems.add(new ToDoItemToday("Task #2", "Play Basketball", "15:00", "Meet up with friends before hand at the plaza to get lunch first. CIF is open for ball starting at 2pm"));
-        //listOfItems.add(new ToDoItemToday("Task #3", "Work on New App", "18:30", "Get the geolocation and videos on the app working before working on other aspects."));
          rvAdapter = new ToDoItemTodayRVAdapter(listOfItems);
         rView.setLayoutManager(llm);
         rView.setAdapter(rvAdapter);
