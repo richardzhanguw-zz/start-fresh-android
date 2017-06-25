@@ -88,7 +88,7 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
         String todayAsString = dateFormat.format(today);
         listOfItems= new ArrayList<>();
         if (sharedPref.getInt(todayAsString, 0) > 0){
-            for(int i = 1; i < sharedPref.getInt(todayAsString, 0)+1; i ++){
+            for(int i = 0; i < sharedPref.getInt(todayAsString, 0); i ++){
                 ToDoItemToday task = new ToDoItemToday("task", sharedPref.getString("task" + String.valueOf(i)+"-name", "Task Summary"), sharedPref.getString("task" + String.valueOf(i)+"-time", "Task Time"), sharedPref.getString("task" + String.valueOf(i)+"-details", "Task Details"));
                 listOfItems.add(task);
             }
@@ -145,7 +145,6 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
                                     gifImageView.setBackgroundResource(R.drawable.weather_sunny);
                                     break;
                             };
-
                         }
                     });
         }

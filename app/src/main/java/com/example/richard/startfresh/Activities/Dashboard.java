@@ -79,7 +79,7 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         dashFrag = (DashboardFragment) adapter.getItem(0);
-                        ToDoItemToday newTask = new ToDoItemToday("Task for Tomorrow", taskNameBox.getText().toString(),"Tomorrow at " + taskTime.getText().toString(), taskNameBox.getText().toString());
+                        ToDoItemToday newTask = new ToDoItemToday("Task for Tomorrow", taskNameBox.getText().toString(),"Tomorrow at " + taskTime.getText().toString(), descriptionBox.getText().toString());
                         dashFrag.getListOfItems().add(newTask);
                         dashFrag.getRvAdapter().notifyDataSetChanged();
                         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -90,13 +90,14 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                         calendar.add(Calendar.DAY_OF_YEAR, 1);
                         Date tomorrow = calendar.getTime();
                         String tomorrowAsString = dateFormat.format(tomorrow);
+                        //String todayAsString = dateFormat.format(today);
                         calendar.add(Calendar.DAY_OF_YEAR, 1);
                         editor.putInt(tomorrowAsString, sharedPref.getInt(tomorrowAsString, 0) + 1);
                         int currentTaskNumberAdded = sharedPref.getInt(tomorrowAsString, 0);
-                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"name", newTask.getTaskName());
-                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"details", newTask.getTaskDetails());
-                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"time", newTask.getTimeOfTask());
-                        editor.commit();
+                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"-name", taskNameBox.getText().toString());
+                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"-details", descriptionBox.getText().toString());
+                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"-time", taskTime.getText().toString());
+                        editor.apply();
                         Snackbar.make(findViewById(R.id.base_layout_main), "Task Added For Tomorrow!", Snackbar.LENGTH_LONG).show();
                         break;
 
