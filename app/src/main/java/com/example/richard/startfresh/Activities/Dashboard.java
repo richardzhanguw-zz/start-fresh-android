@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity implements DashboardFragment.OnFragmentInteractionListener, SecondFragment.OnFragmentInteractionListener, ThirdFragment.OnFragmentInteractionListener {
     ViewPager viewPager;
@@ -58,6 +59,7 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -70,7 +72,8 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
 
     public void onAddNewTaskClicked(View v) {
         View dialogView = View.inflate(this, R.layout.add_new_task_dialog_box, null);
-        final EditText taskTime = (EditText) dialogView.findViewById(R.id.taskTimeField);
+        final TimePicker taskTime = (TimePicker) dialogView.findViewById(R.id.taskTimeField);
+        taskTime.setIs24HourView(false);
         final EditText descriptionBox = (EditText) dialogView.findViewById(R.id.taskDescriptionField);
         final EditText taskNameBox = (EditText) dialogView.findViewById(R.id.taskNameField);
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -79,7 +82,19 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         dashFrag = (DashboardFragment) adapter.getItem(0);
-                        ToDoItemToday newTask = new ToDoItemToday("Task for Tomorrow", taskNameBox.getText().toString(),"Tomorrow at " + taskTime.getText().toString(), descriptionBox.getText().toString());
+                        String amOrPm = (taskTime.getCurrentHour()<12) ? "am" : "pm";
+                        int currentHour = taskTime.getCurrentHour();
+                        String currentHourText;
+                        if(amOrPm.equals("am") && currentHour == 0){
+                            currentHourText = "12";
+                        } else if (currentHour < 10){
+                            currentHourText = "0" + String.valueOf(currentHour);
+                        } else {
+                            currentHourText = String.valueOf(currentHour);
+                        }
+                        String currentMinuteText = (taskTime.getCurrentMinute()<10) ? "0" + String.valueOf(taskTime.getCurrentMinute()): String.valueOf(taskTime.getCurrentMinute());
+                        String currentTime = currentHourText+":"+currentMinuteText +" " + amOrPm;
+                        ToDoItemToday newTask = new ToDoItemToday("Task for Tomorrow", taskNameBox.getText().toString(),"Tomorrow at " + currentTime, descriptionBox.getText().toString());
                         dashFrag.getListOfItems().add(newTask);
                         dashFrag.getRvAdapter().notifyDataSetChanged();
                         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -96,7 +111,7 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                         int currentTaskNumberAdded = sharedPref.getInt(tomorrowAsString, 0);
                         editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"-name", taskNameBox.getText().toString());
                         editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"-details", descriptionBox.getText().toString());
-                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"-time", taskTime.getText().toString());
+                        editor.putString("task"+String.valueOf(currentTaskNumberAdded)+"-time", currentTime);
                         editor.apply();
                         Snackbar.make(findViewById(R.id.base_layout_main), "Task Added For Tomorrow!", Snackbar.LENGTH_LONG).show();
                         break;
