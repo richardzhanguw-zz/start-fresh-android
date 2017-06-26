@@ -100,7 +100,7 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         Calendar calendar = Calendar.getInstance();
-                        Date today = calendar.getTime();
+                        //Date today = calendar.getTime();
                         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
                         calendar.add(Calendar.DAY_OF_YEAR, 1);
                         Date tomorrow = calendar.getTime();
@@ -115,7 +115,6 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                         editor.apply();
                         Snackbar.make(findViewById(R.id.base_layout_main), "Task Added For Tomorrow!", Snackbar.LENGTH_LONG).show();
                         break;
-
                     case DialogInterface.BUTTON_NEGATIVE:
                         dialog.dismiss();
                         break;
