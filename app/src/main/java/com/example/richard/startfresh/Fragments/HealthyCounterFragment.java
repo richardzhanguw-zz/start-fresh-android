@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.richard.startfresh.R;
 
-public class SecondFragment extends Fragment {
+public class HealthyCounterFragment extends Fragment {
 
-    public SecondFragment() {
+    public HealthyCounterFragment() {
     }
 
     @Override
@@ -24,7 +24,7 @@ public class SecondFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.secondfragment, container, false);
+        View view = inflater.inflate(R.layout.healthycounter, container, false);
         return view;
     }
 

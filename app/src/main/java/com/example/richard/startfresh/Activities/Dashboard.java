@@ -1,7 +1,6 @@
 package com.example.richard.startfresh.Activities;
 
 import android.app.AlertDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,14 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
 import com.example.richard.startfresh.AdaptersAndOtherClasses.ToDoItemToday;
 import com.example.richard.startfresh.Fragments.DashboardFragment;
-import com.example.richard.startfresh.Fragments.SecondFragment;
+import com.example.richard.startfresh.Fragments.HealthyCounterFragment;
 import com.example.richard.startfresh.Fragments.ThirdFragment;
 import com.example.richard.startfresh.R;
 
@@ -34,9 +31,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-public class Dashboard extends AppCompatActivity implements DashboardFragment.OnFragmentInteractionListener, SecondFragment.OnFragmentInteractionListener, ThirdFragment.OnFragmentInteractionListener {
+public class Dashboard extends AppCompatActivity implements DashboardFragment.OnFragmentInteractionListener, HealthyCounterFragment.OnFragmentInteractionListener, ThirdFragment.OnFragmentInteractionListener {
     ViewPager viewPager;
     TabLayout tabLayout;
     DashboardFragment dashFrag;
@@ -66,7 +62,7 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new DashboardFragment(), "Home");
         adapter.addFragment(new ThirdFragment(), "Fragment 2");
-        adapter.addFragment(new SecondFragment(), "Fragment 3");
+        adapter.addFragment(new HealthyCounterFragment(), "Fragment 3");
         viewPager.setAdapter(adapter);
     }
 
