@@ -7,8 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 
 import com.example.richard.startfresh.R;
+import com.felipecsl.asymmetricgridview.library.Utils;
+import com.felipecsl.asymmetricgridview.library.model.AsymmetricItem;
+import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
+import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class HealthyCounterFragment extends Fragment {
 

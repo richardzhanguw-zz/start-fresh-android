@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp">
-
-
-</RelativeLayout>
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text = "What did you eat today?"
+        android:gravity="center_horizontal"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text = "#### calories consumed today"
+        android:gravity="center_horizontal"/>
+    <com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/food_categories"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"/>
+</LinearLayout>
