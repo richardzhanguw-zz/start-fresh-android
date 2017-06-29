@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:grid="http://schemas.android.com/tools"
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
@@ -15,9 +15,48 @@
         android:layout_height="wrap_content"
         android:text = "#### calories consumed today"
         android:gravity="center_horizontal"/>
-    <com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView
+    <android.support.v7.widget.GridLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/food_categories"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"/>
+        xmlns:grid="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/choice_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        grid:alignmentMode="alignBounds"
+        grid:columnCount="2">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            grid:layout_columnWeight="2"
+            grid:layout_gravity="fill_horizontal"
+            android:gravity="center"
+            android:background="#FF5733"
+            android:text="Grain Products" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal"
+            android:gravity="center"
+            android:background="#58D68D"
+            android:text="Milk" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal"
+            android:gravity="center"
+            android:background="#F1C40F"
+            android:text="Fruits And Vegetables" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill_horizontal"
+            android:gravity="center"
+            android:background="#3498DB"
+            android:text="Meat " />
+
+    </android.support.v7.widget.GridLayout>
 </LinearLayout>

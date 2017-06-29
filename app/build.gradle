@@ -43,5 +43,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.google.android.gms:play-services-awareness:11.0.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
-    compile 'com.felipecsl.asymmetricgridview:library:2.0.1'
+    compile 'com.android.support:gridlayout-v7:25.1.0'
 }

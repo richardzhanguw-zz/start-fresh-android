@@ -119,7 +119,7 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Log.d("weather", "permission check passed");
-            Awareness.SnapshotApi.getWeather(mGoogleApiClient)
+            /*Awareness.SnapshotApi.getWeather(mGoogleApiClient)
                     .setResultCallback(new ResultCallback<WeatherResult>() {
                         @Override
                         public void onResult(@NonNull WeatherResult weatherResult) {
@@ -146,7 +146,7 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
                                     break;
                             };
                         }
-                    });
+                    });*/
         }
         return view;
     }

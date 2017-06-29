@@ -1,6 +1,7 @@
 package com.example.richard.startfresh.Fragments;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,16 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
 import com.example.richard.startfresh.R;
-import com.felipecsl.asymmetricgridview.library.Utils;
-import com.felipecsl.asymmetricgridview.library.model.AsymmetricItem;
-import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
-import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class HealthyCounterFragment extends Fragment {
+public class HealthyCounterFragment extends Fragment implements ListAdapter {
 
     public HealthyCounterFragment() {
     }
@@ -56,6 +49,66 @@ public class HealthyCounterFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int i) {
+        return false;
+    }
+
+    @Override
+    public void registerDataSetObserver(DataSetObserver dataSetObserver) {
+
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
+
+    }
+
+    @Override
+    public int getCount() {
+        return 0;
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        return null;
+    }
+
+    @Override
+    public int getItemViewType(int i) {
+        return 0;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 
     public interface OnFragmentInteractionListener {
