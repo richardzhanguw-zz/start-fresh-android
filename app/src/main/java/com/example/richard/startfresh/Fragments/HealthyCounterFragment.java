@@ -15,6 +15,7 @@ import com.example.richard.startfresh.R;
 public class HealthyCounterFragment extends Fragment implements ListAdapter {
 
     public HealthyCounterFragment() {
+
     }
 
     @Override
@@ -29,7 +30,6 @@ public class HealthyCounterFragment extends Fragment implements ListAdapter {
         View view = inflater.inflate(R.layout.healthycounter, container, false);
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
