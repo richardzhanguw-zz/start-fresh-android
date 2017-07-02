@@ -13,7 +13,7 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center_horizontal"
         android:textSize="30sp"
-        android:id="@+id/textView2" />
+        android:id="@+id/header_title" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:gravity="center_horizontal"
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView3" />
+        android:id="@+id/calorie_counter_text" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,13 +30,14 @@
         android:layout_marginBottom="62dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout2">
+        android:id="@+id/food_choices_layout">
         <android.support.v7.widget.GridLayout
             android:id="@+id/choice_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             grid2:columnCount="2">
             <TextView
+                android:id = "@+id/grains_box"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 grid2:layout_columnWeight="1"
@@ -47,6 +48,7 @@
                 android:fontFamily="sans-serif-medium"                android:background="@drawable/grains"
                 android:text="Grain Products" />
             <TextView
+                android:id = "@+id/dairy_box"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 grid2:layout_columnWeight="1"
@@ -58,6 +60,7 @@
                 android:background="@drawable/milk"
                 android:text="Milk" />
             <TextView
+                android:id = "@+id/fruits_and_vegetables_box"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 grid2:layout_columnWeight="1"
@@ -69,6 +72,7 @@
                 android:background="@drawable/fruitsandvegetables"
                 android:text="Fruits And Vegetables" />
             <TextView
+                android:id = "@+id/meats_box"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 grid2:layout_columnWeight="1"
@@ -80,8 +84,8 @@
                 android:textSize = "14sp"
                 android:text="Meat " />
         </android.support.v7.widget.GridLayout>
-
         <TextView
+            android:id = "@+id/other_foods_box"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background = "@drawable/otherfoods"
@@ -91,7 +95,6 @@
             android:textColor="#FFFFFF"
             android:textSize = "14sp"/>
     </LinearLayout>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
