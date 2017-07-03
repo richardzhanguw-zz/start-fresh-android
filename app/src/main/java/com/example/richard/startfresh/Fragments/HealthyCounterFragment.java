@@ -1,6 +1,7 @@
 package com.example.richard.startfresh.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
+import com.example.richard.startfresh.Activities.FoodTypeSelectionActivity;
 import com.example.richard.startfresh.R;
 
 public class HealthyCounterFragment extends Fragment implements ListAdapter {
@@ -113,6 +115,28 @@ public class HealthyCounterFragment extends Fragment implements ListAdapter {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void onFoodTypeBoxClicked(View v){
+        switch(v.getId()){
+            case R.id.dairy_box:
+                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                break;
+            case R.id.fruits_and_vegetables_box:
+                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                break;
+            case R.id.grains_box:
+                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                break;
+            case R.id.meats_box:
+                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                break;
+            case R.id.other_foods_box:
+                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                break;
+            default:
+                break;
+        }
     }
 
 }
