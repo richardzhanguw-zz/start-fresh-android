@@ -10,11 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 
 import com.example.richard.startfresh.Activities.FoodTypeSelectionActivity;
 import com.example.richard.startfresh.R;
 
-public class HealthyCounterFragment extends Fragment implements ListAdapter {
+import org.w3c.dom.Text;
+
+public class HealthyCounterFragment extends Fragment implements  View.OnClickListener {
 
     public HealthyCounterFragment() {
 
@@ -30,6 +33,16 @@ public class HealthyCounterFragment extends Fragment implements ListAdapter {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.healthycounter, container, false);
+        TextView dairy = (TextView) view.findViewById(R.id.dairy_box);
+        TextView fruitsandvegetables = (TextView) view.findViewById(R.id.fruits_and_vegetables_box);
+        TextView grains = (TextView) view.findViewById(R.id.grains_box);
+        TextView meat = (TextView) view.findViewById(R.id.meats_box);
+        TextView other = (TextView) view.findViewById(R.id.other_foods_box);
+        dairy.setOnClickListener(this);
+        fruitsandvegetables.setOnClickListener(this);
+        grains.setOnClickListener(this);
+        meat.setOnClickListener(this);
+        other.setOnClickListener(this);
         return view;
     }
 
@@ -53,72 +66,10 @@ public class HealthyCounterFragment extends Fragment implements ListAdapter {
         super.onDestroyView();
     }
 
-    @Override
-    public boolean areAllItemsEnabled() {
-        return false;
-    }
 
     @Override
-    public boolean isEnabled(int i) {
-        return false;
-    }
-
-    @Override
-    public void registerDataSetObserver(DataSetObserver dataSetObserver) {
-
-    }
-
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
-
-    }
-
-    @Override
-    public int getCount() {
-        return 0;
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return false;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
-    }
-
-    @Override
-    public int getItemViewType(int i) {
-        return 0;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
-    public void onFoodTypeBoxClicked(View v){
-        switch(v.getId()){
+    public void onClick(View view) {
+        switch(view.getId()) {
             case R.id.dairy_box:
                 startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
                 break;
@@ -137,6 +88,10 @@ public class HealthyCounterFragment extends Fragment implements ListAdapter {
             default:
                 break;
         }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 
 }
