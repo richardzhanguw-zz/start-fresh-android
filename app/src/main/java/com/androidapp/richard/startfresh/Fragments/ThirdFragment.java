@@ -1,4 +1,4 @@
-package com.example.richard.startfresh.Fragments;
+package com.androidapp.richard.startfresh.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.richard.startfresh.R;
+import com.androidapp.richard.startfresh.R;
 
 
 public class ThirdFragment extends Fragment {

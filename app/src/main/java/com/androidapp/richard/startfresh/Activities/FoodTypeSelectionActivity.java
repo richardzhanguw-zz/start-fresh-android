@@ -1,9 +1,9 @@
-package com.example.richard.startfresh.Activities;
+package com.androidapp.richard.startfresh.Activities;
 
 import android.os.Bundle;
 import android.app.Activity;
 
-import com.example.richard.startfresh.R;
+import com.androidapp.richard.startfresh.R;
 
 public class FoodTypeSelectionActivity extends Activity {
 

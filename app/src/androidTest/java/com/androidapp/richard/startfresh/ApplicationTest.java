@@ -1,4 +1,4 @@
-package com.example.richard.startfresh;
+package com.androidapp.richard.startfresh;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

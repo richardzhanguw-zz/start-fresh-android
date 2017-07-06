@@ -1,4 +1,4 @@
-package com.example.richard.startfresh.Fragments;
+package com.androidapp.richard.startfresh.Fragments;
 
 import android.Manifest;
 import android.content.Context;
@@ -15,17 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.richard.startfresh.AdaptersAndOtherClasses.ToDoItemToday;
-import com.example.richard.startfresh.AdaptersAndOtherClasses.ToDoItemTodayRVAdapter;
-import com.example.richard.startfresh.R;
+import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.ToDoItemToday;
+import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.ToDoItemTodayRVAdapter;
+import com.androidapp.richard.startfresh.R;
 import com.google.android.gms.awareness.Awareness;
-import com.google.android.gms.awareness.snapshot.WeatherResult;
-import com.google.android.gms.awareness.state.Weather;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

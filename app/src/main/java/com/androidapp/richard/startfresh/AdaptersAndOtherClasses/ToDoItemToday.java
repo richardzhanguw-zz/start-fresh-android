@@ -1,4 +1,4 @@
-package com.example.richard.startfresh.AdaptersAndOtherClasses;
+package com.androidapp.richard.startfresh.AdaptersAndOtherClasses;
 
 
 /**

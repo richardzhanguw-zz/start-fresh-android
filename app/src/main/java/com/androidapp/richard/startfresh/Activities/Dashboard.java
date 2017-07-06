@@ -1,4 +1,4 @@
-package com.example.richard.startfresh.Activities;
+package com.androidapp.richard.startfresh.Activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,11 +19,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-import com.example.richard.startfresh.AdaptersAndOtherClasses.ToDoItemToday;
-import com.example.richard.startfresh.Fragments.DashboardFragment;
-import com.example.richard.startfresh.Fragments.HealthyCounterFragment;
-import com.example.richard.startfresh.Fragments.ThirdFragment;
-import com.example.richard.startfresh.R;
+import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.ToDoItemToday;
+import com.androidapp.richard.startfresh.Fragments.DashboardFragment;
+import com.androidapp.richard.startfresh.Fragments.HealthyCounterFragment;
+import com.androidapp.richard.startfresh.Fragments.ThirdFragment;
+import com.androidapp.richard.startfresh.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

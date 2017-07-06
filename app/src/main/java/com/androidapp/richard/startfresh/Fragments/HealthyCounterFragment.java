@@ -1,21 +1,23 @@
-package com.example.richard.startfresh.Fragments;
+package com.androidapp.richard.startfresh.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.DataSetObserver;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.example.richard.startfresh.Activities.FoodTypeSelectionActivity;
-import com.example.richard.startfresh.R;
+import com.androidapp.richard.startfresh.Activities.FoodTypeSelectionActivity;
+import com.androidapp.richard.startfresh.R;
 
-import org.w3c.dom.Text;
+import java.io.IOException;
 
 public class HealthyCounterFragment extends Fragment implements  View.OnClickListener {
 

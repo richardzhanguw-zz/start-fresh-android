@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.richard.startfresh.Activities;
+package com.androidapp.richard.startfresh.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 
 
 
-import com.example.richard.startfresh.R;
+import com.androidapp.richard.startfresh.R;
 
 public final class MainActivity extends AppCompatActivity {
 
