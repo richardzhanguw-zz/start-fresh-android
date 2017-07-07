@@ -55,6 +55,17 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         meat.setOnClickListener(this);
         other.setOnClickListener(this);
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         return view;
     }
 
