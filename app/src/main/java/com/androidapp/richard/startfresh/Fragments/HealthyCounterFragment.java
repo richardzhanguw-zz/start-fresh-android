@@ -58,7 +58,6 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                
             }
 
             @Override
