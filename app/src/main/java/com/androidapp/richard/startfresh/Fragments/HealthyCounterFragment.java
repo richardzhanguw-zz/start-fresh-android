@@ -54,17 +54,6 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         grains.setOnClickListener(this);
         meat.setOnClickListener(this);
         other.setOnClickListener(this);
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
         return view;
     }
 
@@ -91,25 +80,29 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        String foodGroupSelected = "";
         switch(view.getId()) {
             case R.id.dairy_box:
-                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                foodGroupSelected = "milk and alternatives";
                 break;
             case R.id.fruits_and_vegetables_box:
-                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                foodGroupSelected = "fruits and vegetables";
                 break;
             case R.id.grains_box:
-                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                foodGroupSelected = "grain products";
                 break;
             case R.id.meats_box:
-                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                foodGroupSelected = "meat and alternatives";
                 break;
             case R.id.other_foods_box:
-                startActivity(new Intent(getActivity(), FoodTypeSelectionActivity.class));
+                foodGroupSelected = "other foods";
                 break;
             default:
                 break;
         }
+        Intent i = new Intent(getActivity(), FoodTypeSelectionActivity.class);
+        i.putExtra("food group selected", foodGroupSelected);
+        startActivity(i);
     }
 
     public interface OnFragmentInteractionListener {

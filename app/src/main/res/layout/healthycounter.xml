@@ -43,7 +43,7 @@
                 grid2:layout_gravity="fill_horizontal"
                 android:gravity="center"
                 android:background="@drawable/milk"
-                android:text="Milk" />
+                android:text="Milk and Alternatives" />
             <TextView
                 android:id = "@+id/fruits_and_vegetables_box"
                 android:layout_width="0dp"
@@ -67,7 +67,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#FFFFFF"
                 android:textSize = "14sp"
-                android:text="Meat " />
+                android:text="Meat and Alternatives" />
         </android.support.v7.widget.GridLayout>
         <TextView
             android:id = "@+id/other_foods_box"
