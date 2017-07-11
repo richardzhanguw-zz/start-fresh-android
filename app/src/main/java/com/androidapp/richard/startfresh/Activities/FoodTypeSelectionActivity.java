@@ -67,24 +67,25 @@ public class FoodTypeSelectionActivity extends Activity {
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                    String currentText = charSequence.toString();
-//                    ArrayList<String> originalList = listOfFoods;
-//                    listOfFoods.clear();
-//                    Log.d("liststuff", "ontextchanged with size" + String.valueOf(listOfFoods.size()));
-//                    for (int j = 0; i< originalList.size(); i ++){
-//                        Log.d("liststuff", "for loop");
-//                        if(currentText.equals(originalList.get(j).substring(0, i2))){
-//                            listOfFoods.add(originalList.get(j));
-//                            Log.d("liststuff", "for loop if");
-//                        }
-//                    }
-//                    adapter.notifyDataSetChanged();
-
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-
+                    String currentText = editable.toString();
+                    Log.d("liststuff", "ontextchanged with size" + String.valueOf(listOfFoods.size()));
+                    ArrayList<String> originalList = new ArrayList<String>();
+                    for(int i =0; i < listOfFoods.size(); i ++){
+                        originalList.add(listOfFoods.get(i));
+                    }
+                    listOfFoods.clear();
+                    for (int j = 0; j< originalList.size(); j ++){
+                        Log.d("liststuff", "for loop");
+                        if(currentText.equals(originalList.get(j).substring(0, editable.length()))){
+                            listOfFoods.add(originalList.get(j));
+                            Log.d("liststuff", "for loop if");
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
                 }
             });
         }
