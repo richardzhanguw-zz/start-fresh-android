@@ -22,10 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class FoodTypeSelectionActivity extends Activity {
+    ArrayList<String> originalList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.activity_food_type_selection);
+        originalList = new ArrayList<String>();
         final ListView foodSelectionList = (ListView) findViewById(R.id.food_selection_list_view);
         EditText searchTextField = (EditText) findViewById(R.id.search_foods_edit_text);
         final ArrayList<String> listOfFoods = new ArrayList<String>();
@@ -41,6 +43,7 @@ public class FoodTypeSelectionActivity extends Activity {
                     } else {
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
                             listOfFoods.add(child.getValue().toString());
+                            originalList.add(child.getValue().toString());
                         }
                     }
                 }
@@ -72,17 +75,10 @@ public class FoodTypeSelectionActivity extends Activity {
                 @Override
                 public void afterTextChanged(Editable editable) {
                     String currentText = editable.toString();
-                    Log.d("liststuff", "ontextchanged with size" + String.valueOf(listOfFoods.size()));
-                    ArrayList<String> originalList = new ArrayList<String>();
-                    for(int i =0; i < listOfFoods.size(); i ++){
-                        originalList.add(listOfFoods.get(i));
-                    }
                     listOfFoods.clear();
                     for (int j = 0; j< originalList.size(); j ++){
-                        Log.d("liststuff", "for loop");
                         if(currentText.equals(originalList.get(j).substring(0, editable.length()))){
                             listOfFoods.add(originalList.get(j));
-                            Log.d("liststuff", "for loop if");
                         }
                     }
                     adapter.notifyDataSetChanged();
