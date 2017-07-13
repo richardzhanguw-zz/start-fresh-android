@@ -38,14 +38,10 @@ public class FoodTypeSelectionActivity extends Activity {
             dbRef.child("food groups").child(foodGroupSelected).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot == null) {
-                        Log.d("ondatachange", "is null");
-                    } else {
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
                             listOfFoods.add(child.getValue().toString());
                             originalList.add(child.getValue().toString());
                         }
-                    }
                 }
 
                 @Override
@@ -60,7 +56,7 @@ public class FoodTypeSelectionActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                }
+                }   
             });
             searchTextField.addTextChangedListener(new TextWatcher() {
                 @Override
