@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.FoodType;
+import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.FoodTypesArrayAdapter;
 import com.androidapp.richard.startfresh.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -22,15 +24,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class FoodTypeSelectionActivity extends Activity {
-    ArrayList<String> originalList;
+    ArrayList<FoodType> originalList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.activity_food_type_selection);
-        originalList = new ArrayList<String>();
+        originalList = new ArrayList<FoodType>();
         final ListView foodSelectionList = (ListView) findViewById(R.id.food_selection_list_view);
         EditText searchTextField = (EditText) findViewById(R.id.search_foods_edit_text);
-        final ArrayList<String> listOfFoods = new ArrayList<String>();
+        final ArrayList<FoodType> listOfFoods = new ArrayList<FoodType>();
         FirebaseApp.initializeApp(this);
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         if (getIntent().getExtras() != null) {
@@ -39,8 +41,10 @@ public class FoodTypeSelectionActivity extends Activity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
-                            listOfFoods.add(child.getValue().toString());
-                            originalList.add(child.getValue().toString());
+                            Log.d("liststuff",child.child("foodName").getValue().toString());
+                            FoodType food = new FoodType(child.child("foodName").getValue().toString(), child.child("foodCalories").getValue().toString());
+                            listOfFoods.add(food);
+                            originalList.add(food);
                         }
                 }
 
@@ -49,8 +53,7 @@ public class FoodTypeSelectionActivity extends Activity {
 
                 }
             });
-            final ArrayAdapter adapter = new ArrayAdapter(this,
-                    android.R.layout.simple_list_item_1, listOfFoods);
+            final FoodTypesArrayAdapter adapter = new FoodTypesArrayAdapter(this, listOfFoods);
             foodSelectionList.setAdapter(adapter);
             foodSelectionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -73,7 +76,7 @@ public class FoodTypeSelectionActivity extends Activity {
                     String currentText = editable.toString();
                     listOfFoods.clear();
                     for (int j = 0; j< originalList.size(); j ++){
-                        if(currentText.equals(originalList.get(j).substring(0, editable.length()))){
+                        if(currentText.equals(originalList.get(j).getFoodName().substring(0, editable.length()))){
                             listOfFoods.add(originalList.get(j));
                         }
                     }
