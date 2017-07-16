@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.FoodType;
 import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.FoodTypesArrayAdapter;
@@ -32,6 +33,7 @@ public class FoodTypeSelectionActivity extends Activity {
         originalList = new ArrayList<FoodType>();
         final ListView foodSelectionList = (ListView) findViewById(R.id.food_selection_list_view);
         EditText searchTextField = (EditText) findViewById(R.id.search_foods_edit_text);
+        RelativeLayout addIntakeAmountRelView = (RelativeLayout) findViewById(R.id.add_intake_amount_relative_view);
         final ArrayList<FoodType> listOfFoods = new ArrayList<FoodType>();
         FirebaseApp.initializeApp(this);
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
@@ -41,7 +43,7 @@ public class FoodTypeSelectionActivity extends Activity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
-                            FoodType food = new FoodType(child.child("name").getValue().toString(), child.child("calories").getValue().toString() +" calories" + "/"+child.child("per_amount").getValue().toString());
+                            FoodType food = new FoodType(child.child("name").getValue().toString(), child.child("calories").getValue().toString(), child.child("per_amount").getValue().toString());
                             listOfFoods.add(food);
                             originalList.add(food);
                         }
@@ -57,8 +59,10 @@ public class FoodTypeSelectionActivity extends Activity {
             foodSelectionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                }   
+                    view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    RelativeLayout expandableView = (RelativeLayout)view.findViewWithTag("expandableview"+String.valueOf(i));
+                    expandableView.setVisibility(View.VISIBLE);
+                }
             });
             searchTextField.addTextChangedListener(new TextWatcher() {
                 @Override

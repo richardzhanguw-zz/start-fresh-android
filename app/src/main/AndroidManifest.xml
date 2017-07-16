@@ -33,7 +33,8 @@
 
         <activity
             android:name="com.androidapp.richard.startfresh.Activities.FoodTypeSelectionActivity"
-            android:label="@string/title_activity_food_type_selection"></activity>
+            android:label="@string/title_activity_food_type_selection"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>

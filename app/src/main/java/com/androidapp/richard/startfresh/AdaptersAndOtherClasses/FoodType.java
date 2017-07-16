@@ -7,10 +7,12 @@ package com.androidapp.richard.startfresh.AdaptersAndOtherClasses;
 public class FoodType {
     private String foodName;
     private String foodCalories;
+    private String perFoodAmount;
 
-    public FoodType(String foodName, String foodCalories){
+    public FoodType(String foodName, String foodCalories, String perFoodAmount){
         this.foodName = foodName;
         this.foodCalories = foodCalories;
+        this.perFoodAmount = perFoodAmount;
     }
 
     public String getFoodCalories(){
@@ -20,4 +22,9 @@ public class FoodType {
     public String getFoodName(){
         return foodName;
     }
+
+    public String getPerFoodAmount(){
+        return perFoodAmount;
+    }
+
 }
