@@ -41,8 +41,7 @@ public class FoodTypeSelectionActivity extends Activity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
-                            Log.d("liststuff",child.child("foodName").getValue().toString());
-                            FoodType food = new FoodType(child.child("foodName").getValue().toString(), child.child("foodCalories").getValue().toString());
+                            FoodType food = new FoodType(child.child("name").getValue().toString(), child.child("calories").getValue().toString() +" calories" + "/"+child.child("per_amount").getValue().toString());
                             listOfFoods.add(food);
                             originalList.add(food);
                         }
