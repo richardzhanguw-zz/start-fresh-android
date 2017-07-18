@@ -2,6 +2,7 @@ package com.androidapp.richard.startfresh.Activities;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.design.widget.CoordinatorLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,7 +34,7 @@ public class FoodTypeSelectionActivity extends Activity {
         originalList = new ArrayList<FoodType>();
         final ListView foodSelectionList = (ListView) findViewById(R.id.food_selection_list_view);
         EditText searchTextField = (EditText) findViewById(R.id.search_foods_edit_text);
-        RelativeLayout addIntakeAmountRelView = (RelativeLayout) findViewById(R.id.add_intake_amount_relative_view);
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.food_selection_coord_linatorayout);
         final ArrayList<FoodType> listOfFoods = new ArrayList<FoodType>();
         FirebaseApp.initializeApp(this);
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
@@ -54,7 +55,7 @@ public class FoodTypeSelectionActivity extends Activity {
 
                 }
             });
-            final FoodTypesArrayAdapter adapter = new FoodTypesArrayAdapter(this, listOfFoods);
+            final FoodTypesArrayAdapter adapter = new FoodTypesArrayAdapter(this, listOfFoods,coordinatorLayout );
             foodSelectionList.setAdapter(adapter);
             foodSelectionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

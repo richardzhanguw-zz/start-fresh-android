@@ -2,6 +2,7 @@ package com.androidapp.richard.startfresh.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,6 +31,7 @@ import static android.content.ContentValues.TAG;
 
 public class HealthyCounterFragment extends Fragment implements  View.OnClickListener {
 
+    TextView calorieCounterText;
     public HealthyCounterFragment() {
 
     }
@@ -54,6 +56,7 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         grains.setOnClickListener(this);
         meat.setOnClickListener(this);
         other.setOnClickListener(this);
+        calorieCounterText = (TextView) view.findViewById(R.id.calorie_counter_text);
         return view;
     }
 
@@ -77,7 +80,13 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         super.onDestroyView();
     }
 
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("caloriecount", Context.MODE_PRIVATE);
+        calorieCounterText.setText(String.valueOf(sharedPref.getInt("current day calorie count", 0))+" calories consumed today");
+        Log.d("calories", "onresumehit");
+    }
     @Override
     public void onClick(View view) {
         String foodGroupSelected = "";

@@ -106,7 +106,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "####/2000 calories consumed today"
+        android:text = "0 calories consumed today"
         android:gravity="center_horizontal"
         android:id="@+id/calorie_counter_text"
         android:layout_marginBottom="39dp"
