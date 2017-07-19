@@ -26,6 +26,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import static android.content.ContentValues.TAG;
 
@@ -84,8 +88,13 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
     public void onResume(){
         super.onResume();
         SharedPreferences sharedPref = getActivity().getSharedPreferences("caloriecount", Context.MODE_PRIVATE);
-        calorieCounterText.setText(String.valueOf(sharedPref.getInt("current day calorie count", 0))+" calories consumed today");
-        Log.d("calories", "onresumehit");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        if(sharedPref.getString("most recently added entry date", "").equals(dateFormat.format(date))){
+            calorieCounterText.setText(String.valueOf(sharedPref.getInt("current day calorie count", 0))+" calories consumed today");
+        } else {
+            calorieCounterText.setText("0 calories consumed today");
+        }
     }
     @Override
     public void onClick(View view) {
