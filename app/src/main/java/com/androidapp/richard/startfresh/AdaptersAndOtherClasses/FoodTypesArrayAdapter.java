@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by zhang on 2017-07-12.
+ * Created by Richard Zhang on 2017-07-12.
  */
 
 public class FoodTypesArrayAdapter extends ArrayAdapter<FoodType> {

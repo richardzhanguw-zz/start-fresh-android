@@ -1,7 +1,7 @@
 package com.androidapp.richard.startfresh.AdaptersAndOtherClasses;
 
 /**
- * Created by zhang on 2017-07-12.
+ * Created by Richard Zhang on 2017-07-12.
  */
 
 public class FoodType {

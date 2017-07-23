@@ -2,7 +2,7 @@ package com.androidapp.richard.startfresh.AdaptersAndOtherClasses;
 
 
 /**
- * Created by Richard on 2016-02-27.
+ * Created by Richard Zhang on 2016-02-27.
  */
 public class ToDoItemToday {
 

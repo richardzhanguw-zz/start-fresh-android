@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:grid="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -84,11 +85,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        style = "@style/Widget.AppCompat.Button.Colored"
         android:text = "See Past Counts"
-        android:id="@+id/button2"
+        android:id="@+id/see_past_counts_button"
         android:layout_above="@+id/food_choices_layout"
         android:layout_alignParentStart="true"
         android:layout_marginStart="126dp"
+        android:theme = "@style/AppTheme.Button"
         android:layout_marginBottom="6dp" />
 
     <TextView

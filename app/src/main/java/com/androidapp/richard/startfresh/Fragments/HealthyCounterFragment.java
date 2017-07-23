@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.androidapp.richard.startfresh.Activities.ConsumptionHistoryActivity;
 import com.androidapp.richard.startfresh.Activities.FoodTypeSelectionActivity;
 import com.androidapp.richard.startfresh.R;
 import com.google.firebase.database.ChildEventListener;
@@ -55,6 +57,13 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         TextView grains = (TextView) view.findViewById(R.id.grains_box);
         TextView meat = (TextView) view.findViewById(R.id.meats_box);
         TextView other = (TextView) view.findViewById(R.id.other_foods_box);
+        Button seePastCountsButton = (Button) view.findViewById(R.id.see_past_counts_button);
+        seePastCountsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ConsumptionHistoryActivity.class));
+            }
+        });
         dairy.setOnClickListener(this);
         fruitsandvegetables.setOnClickListener(this);
         grains.setOnClickListener(this);

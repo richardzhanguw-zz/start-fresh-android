@@ -12,7 +12,7 @@ import com.androidapp.richard.startfresh.R;
 import java.util.List;
 
 /**
- * Created by Richard on 2016-02-27.
+ * Created by Richard Zhang on 2016-02-27.
  */
 public class ToDoItemTodayRVAdapter extends RecyclerView.Adapter<ToDoItemTodayRVAdapter.ToDoItemTodayViewHolder> {
 
