@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.androidapp.richard.startfresh.Activities.ConsumptionHistoryActivity;
 import com.androidapp.richard.startfresh.Activities.FoodTypeSelectionActivity;
 import com.androidapp.richard.startfresh.R;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,6 +53,9 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.healthycounter, container, false);
+//        FirebaseApp.initializeApp(getContext());
+//        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+//        dbRef.child("past data").child("calories").child("Jul 21").setValue("1540");
         TextView dairy = (TextView) view.findViewById(R.id.dairy_box);
         TextView fruitsandvegetables = (TextView) view.findViewById(R.id.fruits_and_vegetables_box);
         TextView grains = (TextView) view.findViewById(R.id.grains_box);
