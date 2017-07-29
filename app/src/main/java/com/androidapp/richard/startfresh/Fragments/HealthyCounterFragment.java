@@ -1,5 +1,8 @@
 package com.androidapp.richard.startfresh.Fragments;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +21,7 @@ import android.widget.TextView;
 
 import com.androidapp.richard.startfresh.Activities.ConsumptionHistoryActivity;
 import com.androidapp.richard.startfresh.Activities.FoodTypeSelectionActivity;
+import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.UpdateDatabaseJobService;
 import com.androidapp.richard.startfresh.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ChildEventListener;
@@ -71,6 +75,14 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         meat.setOnClickListener(this);
         other.setOnClickListener(this);
         calorieCounterText = (TextView) view.findViewById(R.id.calorie_counter_text);
+        ComponentName componentName = new ComponentName(getContext(), UpdateDatabaseJobService.class);
+        JobInfo jobInfo = new JobInfo.Builder(1, componentName)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
+                .setRequiresDeviceIdle(true)
+                .setPeriodic(86400000)
+                .build();
+        JobScheduler jobScheduler = (JobScheduler) getContext().getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(jobInfo);
         return view;
     }
 
