@@ -13,22 +13,20 @@ import android.view.ViewGroup;
 import com.androidapp.richard.startfresh.R;
 
 
-public class ThirdFragment extends Fragment {
+public class SpendingTracker extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    public ThirdFragment() {
+    public SpendingTracker() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("MainActivity", "oc hit");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("MainActivity", "ocv hit");
         View view = inflater.inflate(R.layout.spendingtracker, container, false);
         return view;
     }
