@@ -41,7 +41,7 @@ public class SpendingTracker extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.spendingtracker, container, false);
-        ListView listView = (ListView) view.findViewById(R.id.spending_tracker_list_view);
+        final ListView listView = (ListView) view.findViewById(R.id.spending_tracker_list_view);
         FirebaseApp.initializeApp(getContext());
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         final ArrayList<SpendingTrackerItem> listOfItems = new ArrayList<SpendingTrackerItem>();
@@ -52,6 +52,9 @@ public class SpendingTracker extends Fragment {
                     SpendingTrackerItem listItem = new SpendingTrackerItem(Double.parseDouble(child.getValue().toString()), child.getKey());
                     listOfItems.add(listItem);
                 }
+                final SpendingTrackerItemArrayAdapter adapter = new SpendingTrackerItemArrayAdapter(getContext(), listOfItems);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

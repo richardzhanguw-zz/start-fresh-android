@@ -21,7 +21,7 @@ public class SpendingTrackerItemArrayAdapter extends ArrayAdapter<SpendingTracke
     Context context;
     ArrayList<SpendingTrackerItem> itemList;
     public SpendingTrackerItemArrayAdapter(Context context, ArrayList<SpendingTrackerItem> itemList){
-        super(context,-1);
+        super(context, -1, itemList);
         this.context = context;
         this.itemList = itemList;
     }
@@ -33,6 +33,12 @@ public class SpendingTrackerItemArrayAdapter extends ArrayAdapter<SpendingTracke
         final View rowView = inflater.inflate(R.layout.spending_tracker_item_row_view, parent, false);
         TextView itemName = (TextView) rowView.findViewById(R.id.item_name_text_view);
         TextView balancename = (TextView) rowView.findViewById(R.id.balance_change_text_view);
+        if (itemList.get(position).getChangeInBalance() < 0) {
+            rowView.setBackgroundColor(context.getResources().getColor(R.color.red));
+        } else {
+            rowView.setBackgroundColor(context.getResources().getColor(R.color.green));
+        }
+        rowView.getBackground().setAlpha(100);
         balancename.setText(String.valueOf(itemList.get(position).getChangeInBalance()));
         itemName.setText(String.valueOf(itemList.get(position).getName()));
         return rowView;

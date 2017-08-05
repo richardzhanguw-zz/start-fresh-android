@@ -45,10 +45,14 @@
             android:layout_height="wrap_content"
             android:text="Add Green"
             android:background="@color/green"
+            style = "@style/Widget.AppCompat.Button.Colored"
+            android:theme = "@style/AppTheme.Button"
             android:layout_weight="0.5"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style = "@style/Widget.AppCompat.Button.Colored"
+            android:theme = "@style/AppTheme.Button"
             android:text="Add Red"
             android:background="@color/red"
             android:layout_weight="0.5"/>
