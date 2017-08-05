@@ -113,9 +113,9 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Date date = new Date();
         if(sharedPref.getString("most recently added entry date", "").equals(dateFormat.format(date))){
-            calorieCounterText.setText(String.valueOf(sharedPref.getInt("current day calorie count", 0))+" calories consumed today");
+            calorieCounterText.setText(String.valueOf(sharedPref.getInt("current day calorie count", 0)));
         } else {
-            calorieCounterText.setText("0 calories consumed today");
+            calorieCounterText.setText("0");
         }
     }
     @Override

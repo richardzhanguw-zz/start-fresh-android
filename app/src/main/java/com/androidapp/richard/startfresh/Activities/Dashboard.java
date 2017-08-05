@@ -31,6 +31,9 @@ import com.androidapp.richard.startfresh.Fragments.HealthyCounterFragment;
 import com.androidapp.richard.startfresh.Fragments.SpendingTracker;
 import com.androidapp.richard.startfresh.Manifest;
 import com.androidapp.richard.startfresh.R;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -132,6 +135,39 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                 .show();
     }
 
+    public void onAddNewSpendingItemClicked (View v) {
+        View dialogView = View.inflate(this, R.layout.add_new_spending_item_dialog_box, null);
+        final EditText itemNameBox = (EditText) dialogView.findViewById(R.id.item_name_edit_text);
+        final EditText itemPricebox = (EditText) dialogView.findViewById(R.id.item_price_edit_text);
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        FirebaseApp.initializeApp(getApplicationContext());
+                        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+                        Date date = new Date();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-yyyy");
+                        String monthAndYear = dateFormat.format(date);
+//                        Log.d("asdf", new SimpleDateFormat("MM-YYYY").format(date));
+                        dbRef.child("spending tracker list").child("list items").child(monthAndYear).child(date.toString()).child("name").setValue(itemNameBox.getText().toString());
+                        dbRef.child("spending tracker list").child("list items").child(monthAndYear).child(date.toString()).child("price").setValue(itemPricebox.getText().toString());
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        };
+        AlertDialog.Builder  adbuilder = new AlertDialog.Builder(this);
+        adbuilder.setNegativeButton("Cancel", dialogClickListener)
+                .setPositiveButton("Add Item", dialogClickListener)
+                .setCancelable(true)
+                .setTitle("Add a New Item")
+                .setView(dialogView)
+                .show();
+    }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -169,8 +205,6 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
     @Override
     public void onActivityResult(final int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        Log.d("MainActivity", "dashboard OAR hit");
-        // Check if result comes from the correct activity
 
     }
 }
