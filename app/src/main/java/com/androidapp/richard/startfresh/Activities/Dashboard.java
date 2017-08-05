@@ -67,7 +67,7 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new DashboardFragment(), "Home");
-        adapter.addFragment(new SpendingTracker(), "Spending Tracker");
+        adapter.addFragment(new SpendingTracker(), "Money Left");
         adapter.addFragment(new HealthyCounterFragment(), "Diet Tracker");
         viewPager.setAdapter(adapter);
     }
