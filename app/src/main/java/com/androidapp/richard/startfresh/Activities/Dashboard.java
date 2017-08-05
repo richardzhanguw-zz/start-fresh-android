@@ -56,8 +56,8 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
         tabLayout.setupWithViewPager(viewPager);
         final int[] tabIcons = new int[]{
                 R.drawable.fragment1icon,
-                R.drawable.fragment1icon,
-                R.drawable.fragment1icon
+                R.drawable.money_symbol,
+                R.drawable.diet_tracker_symbol
         };
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);

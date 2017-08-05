@@ -7,10 +7,11 @@ package com.androidapp.richard.startfresh.AdaptersAndOtherClasses;
 public class SpendingTrackerItem {
     private Double changeInBalance;
     private String name;
-
-    public SpendingTrackerItem (Double changeInBalance, String name) {
+    private String date;
+    public SpendingTrackerItem (Double changeInBalance, String name, String date) {
         this.changeInBalance = changeInBalance;
         this.name = name;
+        this.date = date;
     }
 
     public Double getChangeInBalance() {
@@ -20,4 +21,8 @@ public class SpendingTrackerItem {
     public String getName() {
         return name;
     }
+    public String getDate() {
+        return date;
+    }
+
 }

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.androidapp.richard.startfresh.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -40,7 +42,7 @@ public class SpendingTrackerItemArrayAdapter extends ArrayAdapter<SpendingTracke
         }
         rowView.getBackground().setAlpha(100);
         balancename.setText(String.valueOf(itemList.get(position).getChangeInBalance()));
-        itemName.setText(String.valueOf(itemList.get(position).getName()));
+        itemName.setText(itemList.get(position).getName() + " on " + itemList.get(position).getDate().substring(0,5));
         return rowView;
     }
 }

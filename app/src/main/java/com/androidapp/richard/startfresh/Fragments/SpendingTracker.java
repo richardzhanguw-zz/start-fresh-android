@@ -23,7 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class SpendingTracker extends Fragment {
@@ -45,11 +47,12 @@ public class SpendingTracker extends Fragment {
         FirebaseApp.initializeApp(getContext());
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         final ArrayList<SpendingTrackerItem> listOfItems = new ArrayList<SpendingTrackerItem>();
-        dbRef.child("spending tracker list").child("list items").addListenerForSingleValueEvent(new ValueEventListener() {
+        Date date = new Date();
+        dbRef.child("spending tracker list").child("list items").child(new SimpleDateFormat("MM-yyyy").format(date)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    SpendingTrackerItem listItem = new SpendingTrackerItem(Double.parseDouble(child.getValue().toString()), child.getKey());
+                    SpendingTrackerItem listItem = new SpendingTrackerItem(Double.parseDouble(child.child("price").getValue().toString()), child.child("name").getValue().toString(), child.getKey());
                     listOfItems.add(listItem);
                 }
                 final SpendingTrackerItemArrayAdapter adapter = new SpendingTrackerItemArrayAdapter(getContext(), listOfItems);
