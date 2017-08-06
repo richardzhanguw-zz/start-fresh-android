@@ -81,18 +81,6 @@
             android:textSize = "14sp"/>
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text = "See Past Counts"
-        android:textColor="@color/colorPrimaryButtonText"
-        android:id="@+id/see_past_counts_button"
-        android:layout_above="@+id/food_choices_layout"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="126dp"
-        android:theme = "@style/AppTheme.Button"
-        android:layout_marginBottom="6dp" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,7 +90,7 @@
         android:id="@+id/calorie_counter_text"
         android:layout_centerHorizontal="true"
         android:textSize="40sp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -115,4 +103,16 @@
         android:id="@+id/textView5"
         android:layout_below="@+id/calorie_counter_text"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text = "See Past Counts"
+        android:textColor="@color/colorPrimaryButtonText"
+        android:id="@+id/see_past_counts_button"
+        android:theme = "@style/AppTheme.Button"
+        android:layout_marginBottom="8dp"
+        android:layout_above="@+id/food_choices_layout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="110dp" />
 </RelativeLayout>

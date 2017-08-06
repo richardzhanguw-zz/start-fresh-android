@@ -50,7 +50,7 @@
         android:layout_height="50dp"
         android:layout_gravity = "right"
         android:onClick="onAddNewTaskClicked"
-        app:backgroundTint = "@color/colorPrimary"
+        app:backgroundTint = "@color/green"
         android:clickable="true"
         app:fabSize="normal"
         android:scaleType="center"
