@@ -14,7 +14,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "Past Calorie Intake History"/>
+        android:text = "Past Calorie Intake History"
+        android:textColor = "@color/colorPrimaryText"/>
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/past_consumption_line_chart"
         android:layout_width="match_parent"

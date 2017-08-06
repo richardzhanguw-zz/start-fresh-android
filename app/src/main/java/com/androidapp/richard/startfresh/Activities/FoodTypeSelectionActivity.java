@@ -34,7 +34,7 @@ public class FoodTypeSelectionActivity extends Activity {
         originalList = new ArrayList<FoodType>();
         final ListView foodSelectionList = (ListView) findViewById(R.id.food_selection_list_view);
         EditText searchTextField = (EditText) findViewById(R.id.search_foods_edit_text);
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.food_selection_coord_linatorayout);
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.food_selection_coordinatorayout);
         final ArrayList<FoodType> listOfFoods = new ArrayList<FoodType>();
         FirebaseApp.initializeApp(this);
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();

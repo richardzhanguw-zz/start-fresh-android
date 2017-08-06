@@ -3,17 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:text="Add a new task for tomorrow:"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:gravity="center" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:textColor="@color/colorPrimaryText"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text = "Name"
@@ -33,6 +29,7 @@
         android:orientation="horizontal">
         <TextView
             android:layout_width="80dp"
+            android:textColor="@color/colorPrimaryText"
             android:layout_height="wrap_content"
             android:text = "Description"
             android:textSize="14sp"
@@ -48,6 +45,10 @@
     <TimePicker
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:amPmBackgroundColor="@color/colorPrimary"
+        android:numbersSelectorColor="@color/colorPrimary"
+        android:numbersTextColor="@color/white"
+        android:numbersBackgroundColor="@color/colorPrimaryLight"
         android:id="@+id/taskTimeField" />
 
 </LinearLayout>
