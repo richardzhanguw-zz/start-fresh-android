@@ -42,7 +42,7 @@ public class SpendingTrackerItemArrayAdapter extends ArrayAdapter<SpendingTracke
         }
         rowView.getBackground().setAlpha(100);
         balancename.setText(String.valueOf(itemList.get(position).getChangeInBalance()));
-        itemName.setText(itemList.get(position).getName() + " on " + itemList.get(position).getDate().substring(0,5));
+        itemName.setText(itemList.get(position).getName() + " on " + itemList.get(position).getDate().substring(4,9));
         return rowView;
     }
 }

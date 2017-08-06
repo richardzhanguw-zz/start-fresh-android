@@ -48,7 +48,10 @@ public class SpendingTracker extends Fragment {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         final ArrayList<SpendingTrackerItem> listOfItems = new ArrayList<SpendingTrackerItem>();
         Date date = new Date();
-        dbRef.child("spending tracker list").child("list items").child(new SimpleDateFormat("MM-yyyy").format(date)).addListenerForSingleValueEvent(new ValueEventListener() {
+        String currentDate = new SimpleDateFormat("MM-yyyy").format(date);
+
+        dbRef.child("spending tracker list").child("list items").child(currentDate
+        ).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
