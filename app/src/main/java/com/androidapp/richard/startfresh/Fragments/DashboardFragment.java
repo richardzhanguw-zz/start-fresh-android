@@ -29,8 +29,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import pl.droidsonroids.gif.GifImageView;
-
 
 public class DashboardFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -76,7 +74,6 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final GifImageView gifImageView = (GifImageView) view.findViewById(R.id.weather_gifview);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
@@ -86,7 +83,6 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
         rView.setAdapter(rvAdapter);
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Log.d("weather", "permission check passed");
             /*Awareness.SnapshotApi.getWeather(mGoogleApiClient)
                     .setResultCallback(new ResultCallback<WeatherResult>() {
                         @Override

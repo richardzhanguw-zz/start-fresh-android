@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by zhang on 2017-07-27.
+ * Created by Richard Zhang on 2017-07-27.
  */
 public class UpdateDatabaseJobService extends JobService {
     @Override

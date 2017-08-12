@@ -1,7 +1,7 @@
 package com.androidapp.richard.startfresh.AdaptersAndOtherClasses;
 
 /**
- * Created by zhang on 2017-08-03.
+ * Created by Richard Zhang on 2017-08-03.
  */
 
 public class SpendingTrackerItem {
