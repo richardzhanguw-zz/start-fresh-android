@@ -1,35 +1,27 @@
 package com.androidapp.richard.startfresh.Activities;
 
 import android.app.AlertDialog;
-import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.hardware.fingerprint.FingerprintManager;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.ToDoItemToday;
 import com.androidapp.richard.startfresh.Fragments.DashboardFragment;
 import com.androidapp.richard.startfresh.Fragments.HealthyCounterFragment;
 import com.androidapp.richard.startfresh.Fragments.SpendingTracker;
-import com.androidapp.richard.startfresh.Manifest;
 import com.androidapp.richard.startfresh.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
