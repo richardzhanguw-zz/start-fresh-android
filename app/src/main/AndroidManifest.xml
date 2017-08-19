@@ -31,10 +31,6 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.google.android.awareness.API_KEY"
-            android:value="@string/google_play_services_key" />
-
         <activity
             android:name=".Activities.FoodTypeSelectionActivity"
             android:label="@string/title_activity_food_type_selection"
