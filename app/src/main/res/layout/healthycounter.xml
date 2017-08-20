@@ -107,12 +107,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text = "See Past Counts"
+        android:text = "Past Calorie Intake History"
         android:textColor="@color/colorPrimaryButtonText"
         android:id="@+id/see_past_counts_button"
         android:theme = "@style/AppTheme.Button"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="61dp"
         android:layout_above="@+id/food_choices_layout"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="110dp" />
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
