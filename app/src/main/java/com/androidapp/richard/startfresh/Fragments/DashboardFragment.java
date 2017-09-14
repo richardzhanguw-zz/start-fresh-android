@@ -15,19 +15,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.ToDoItemToday;
 import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.ToDoItemTodayRVAdapter;
 import com.androidapp.richard.startfresh.R;
 import com.google.android.gms.awareness.Awareness;
+import com.google.android.gms.awareness.snapshot.WeatherResult;
+import com.google.android.gms.awareness.state.Weather;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import pl.droidsonroids.gif.GifImageView;
 
 
 public class DashboardFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
@@ -77,40 +83,26 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        final GifImageView gifImageView = (GifImageView) view.findViewById(R.id.weather_gifview);
         rView.setHasFixedSize(true);
          rvAdapter = new ToDoItemTodayRVAdapter(listOfItems);
         rView.setLayoutManager(llm);
         rView.setAdapter(rvAdapter);
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            /*Awareness.SnapshotApi.getWeather(mGoogleApiClient)
+            Awareness.SnapshotApi.getWeather(mGoogleApiClient)
                     .setResultCallback(new ResultCallback<WeatherResult>() {
                         @Override
                         public void onResult(@NonNull WeatherResult weatherResult) {
-                            Weather weather = weatherResult.getWeather();
-                            TextView weatherTV = (TextView) view.findViewById(R.id.weather_test_textview);
-                            weatherTV.setText("Current Temperature: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius" + " Feels like: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius");
-                            switch(weather.getConditions()[0]) {
-                                case Weather.CONDITION_CLEAR:
-                                    gifImageView.setBackgroundResource(R.drawable.weather_sunny);
-                                    break;
-                                case Weather.CONDITION_CLOUDY:
-                                    gifImageView.setBackgroundResource(R.drawable.weather_cloudy);
-                                    break;
-                                case Weather.CONDITION_SNOWY:
-                                    gifImageView.setBackgroundResource(R.drawable.weather_snowy);
-                                    break;
-                                case Weather.CONDITION_RAINY:
-                                    gifImageView.setBackgroundResource(R.drawable.weather_rainy);
-                                    break;
-                                case Weather.CONDITION_STORMY:
-                                    break;
-                                default:
-                                    gifImageView.setBackgroundResource(R.drawable.weather_sunny);
-                                    break;
-                            };
+                            if (weatherResult.getStatus().isSuccess()) {
+                                Weather weather = weatherResult.getWeather();
+                                TextView weatherTV = (TextView) view.findViewById(R.id.weather_test_textview);
+                                weatherTV.setText("Current Temperature: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius" + " Feels like: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius");
+                            } else {
+                                Log.d("weather", weatherResult.getStatus().toString());
+                            }
                         }
-                    });*/
+                    });
         }
         return view;
     }
