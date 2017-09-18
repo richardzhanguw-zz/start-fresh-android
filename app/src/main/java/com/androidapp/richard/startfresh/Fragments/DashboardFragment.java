@@ -98,8 +98,27 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
                                 Weather weather = weatherResult.getWeather();
                                 TextView weatherTV = (TextView) view.findViewById(R.id.weather_test_textview);
                                 weatherTV.setText("Current Temperature: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius" + " Feels like: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius");
+                                switch(weather.getConditions()[0]) {
+                                    case Weather.CONDITION_CLEAR:
+                                        gifImageView.setBackgroundResource(R.drawable.weather_sunny);
+                                        break;
+                                    case Weather.CONDITION_CLOUDY:
+                                        gifImageView.setBackgroundResource(R.drawable.weather_cloudy);
+                                        break;
+                                    case Weather.CONDITION_SNOWY:
+                                        gifImageView.setBackgroundResource(R.drawable.weather_snowy);
+                                        break;
+                                    case Weather.CONDITION_RAINY:
+                                        gifImageView.setBackgroundResource(R.drawable.weather_rainy);
+                                        break;
+                                    case Weather.CONDITION_STORMY:
+                                        break;
+                                    default:
+                                        gifImageView.setBackgroundResource(R.drawable.weather_sunny);
+                                        break;
+                                };
                             } else {
-                                Log.d("weather", weatherResult.getStatus().toString());
+                                Log.d("weather1", weatherResult.getStatus().toString());
                             }
                         }
                     });
