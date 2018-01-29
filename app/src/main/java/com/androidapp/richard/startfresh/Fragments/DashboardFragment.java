@@ -97,7 +97,7 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
                             if (weatherResult.getStatus().isSuccess()) {
                                 Weather weather = weatherResult.getWeather();
                                 TextView weatherTV = (TextView) view.findViewById(R.id.weather_test_textview);
-                                weatherTV.setText("Current Temperature: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius" + " Feels like: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " Celsius");
+                                weatherTV.setText("Current Temperature: " + Math.round(weather.getTemperature(Weather.CELSIUS)) + " \u00b0C ");
                                 switch(weather.getConditions()[0]) {
                                     case Weather.CONDITION_CLEAR:
                                         gifImageView.setBackgroundResource(R.drawable.weather_sunny);
@@ -118,7 +118,7 @@ public class DashboardFragment extends Fragment implements GoogleApiClient.OnCon
                                         break;
                                 };
                             } else {
-                                Log.d("weather1", weatherResult.getStatus().toString());
+                                Log.d("Could not retrieve data", weatherResult.getStatus().toString());
                             }
                         }
                     });
