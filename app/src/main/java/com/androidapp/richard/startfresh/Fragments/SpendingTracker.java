@@ -29,7 +29,7 @@ import java.util.Date;
 public class SpendingTracker extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    Double amountLeft = 1500.0;
+    int amountLeft = 1500;
     public SpendingTracker() {
     }
 
@@ -56,7 +56,7 @@ public class SpendingTracker extends Fragment {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     SpendingTrackerItem listItem = new SpendingTrackerItem(Double.parseDouble(child.child("price").getValue().toString()), child.child("name").getValue().toString(), child.getKey());
                     listOfItems.add(listItem);
-                    amountLeft += listItem.getChangeInBalance();
+                    amountLeft += (int) listItem.getChangeInBalance().doubleValue();
                 }
                 final SpendingTrackerItemArrayAdapter adapter = new SpendingTrackerItemArrayAdapter(getContext(), listOfItems);
                 listView.setAdapter(adapter);
