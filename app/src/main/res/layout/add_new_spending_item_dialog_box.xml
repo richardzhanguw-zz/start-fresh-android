@@ -38,6 +38,7 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:id="@+id/item_price_edit_text"
+            android:inputType="numberSigned"
             android:layout_marginStart="30dp" />
     </LinearLayout>
 </LinearLayout>

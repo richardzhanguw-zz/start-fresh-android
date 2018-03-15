@@ -143,7 +143,6 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                         Date date = new Date();
                         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-yyyy");
                         String monthAndYear = dateFormat.format(date);
-//                        Log.d("asdf", new SimpleDateFormat("MM-YYYY").format(date));
                         dbRef.child("spending tracker list").child("list items").child(monthAndYear).child(date.toString()).child("name").setValue(itemNameBox.getText().toString());
                         dbRef.child("spending tracker list").child("list items").child(monthAndYear).child(date.toString()).child("price").setValue(itemPricebox.getText().toString());
                         break;
