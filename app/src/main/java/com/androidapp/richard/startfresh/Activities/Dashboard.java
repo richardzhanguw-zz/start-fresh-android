@@ -34,20 +34,22 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class Dashboard extends AppCompatActivity implements DashboardFragment.OnFragmentInteractionListener, HealthyCounterFragment.OnFragmentInteractionListener, SpendingTracker.OnFragmentInteractionListener {
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    @BindView(R.id.tabs) TabLayout tabLayout;
     DashboardFragment dashFrag;
     ViewPagerAdapter adapter;
+    @BindView(R.id.viewpager) ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        ButterKnife.bind(this);
         getSupportActionBar().hide();
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         //set up tab layout
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         final int[] tabIcons = new int[]{
                 R.drawable.fragment1icon,

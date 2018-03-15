@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 public class FoodTypeSelectionActivity extends Activity {
     ArrayList<FoodType> originalList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);

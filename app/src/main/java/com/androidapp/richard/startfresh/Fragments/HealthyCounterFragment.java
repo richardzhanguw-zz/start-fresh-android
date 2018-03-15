@@ -23,9 +23,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public class HealthyCounterFragment extends Fragment implements  View.OnClickListener {
 
-    TextView calorieCounterText;
+    private Unbinder unbinder;
+    @BindView(R.id.calorie_counter_text) TextView calorieCounterText;
     public HealthyCounterFragment() {
 
     }
@@ -40,6 +45,7 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.healthycounter, container, false);
+        unbinder = ButterKnife.bind(this, view);
         TextView dairy = (TextView) view.findViewById(R.id.dairy_box);
         TextView fruitsandvegetables = (TextView) view.findViewById(R.id.fruits_and_vegetables_box);
         TextView grains = (TextView) view.findViewById(R.id.grains_box);
@@ -57,7 +63,6 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         grains.setOnClickListener(this);
         meat.setOnClickListener(this);
         other.setOnClickListener(this);
-        calorieCounterText = (TextView) view.findViewById(R.id.calorie_counter_text);
         ComponentName componentName = new ComponentName(getContext(), UpdateDatabaseJobService.class);
         JobInfo jobInfo = new JobInfo.Builder(1, componentName)
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
@@ -87,6 +92,7 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override

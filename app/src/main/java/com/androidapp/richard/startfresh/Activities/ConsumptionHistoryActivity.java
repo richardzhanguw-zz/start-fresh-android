@@ -28,13 +28,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ConsumptionHistoryActivity extends AppCompatActivity {
 
+    @BindView(R.id.past_consumption_line_chart) LineChart lineChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumption_history);
-        final LineChart lineChart = (LineChart) findViewById(R.id.past_consumption_line_chart);
+        ButterKnife.bind(this);
         final List<Entry> listOfEntries = new ArrayList<Entry>();
         final List<String> dates = new ArrayList<String>();
         FirebaseApp.initializeApp(this);
