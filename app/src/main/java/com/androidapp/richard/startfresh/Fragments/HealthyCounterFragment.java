@@ -25,9 +25,10 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class HealthyCounterFragment extends Fragment implements  View.OnClickListener {
+public class HealthyCounterFragment extends Fragment {
 
     private Unbinder unbinder;
     @BindView(R.id.calorie_counter_text) TextView calorieCounterText;
@@ -46,23 +47,6 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.healthycounter, container, false);
         unbinder = ButterKnife.bind(this, view);
-        TextView dairy = (TextView) view.findViewById(R.id.dairy_box);
-        TextView fruitsandvegetables = (TextView) view.findViewById(R.id.fruits_and_vegetables_box);
-        TextView grains = (TextView) view.findViewById(R.id.grains_box);
-        TextView meat = (TextView) view.findViewById(R.id.meats_box);
-        TextView other = (TextView) view.findViewById(R.id.other_foods_box);
-        Button seePastCountsButton = (Button) view.findViewById(R.id.see_past_counts_button);
-        seePastCountsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ConsumptionHistoryActivity.class));
-            }
-        });
-        dairy.setOnClickListener(this);
-        fruitsandvegetables.setOnClickListener(this);
-        grains.setOnClickListener(this);
-        meat.setOnClickListener(this);
-        other.setOnClickListener(this);
         ComponentName componentName = new ComponentName(getContext(), UpdateDatabaseJobService.class);
         JobInfo jobInfo = new JobInfo.Builder(1, componentName)
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
@@ -72,6 +56,36 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         JobScheduler jobScheduler = (JobScheduler) getContext().getSystemService(Context.JOB_SCHEDULER_SERVICE);
         jobScheduler.schedule(jobInfo);
         return view;
+    }
+
+    @OnClick(R.id.see_past_counts_button) void onPastCountsButtonClick() {
+        startActivity(new Intent(getActivity(), ConsumptionHistoryActivity.class));
+    }
+
+    @OnClick(R.id.dairy_box) void onDairyCategoryClicked() {
+        startActivityWithExtra("milk and alternatives");
+    }
+
+    @OnClick(R.id.fruits_and_vegetables_box) void onFruitsAndVegetablesCategoryClicked() {
+        startActivityWithExtra("fruits and vegetables");
+    }
+
+    @OnClick(R.id.grains_box) void onGrainCategoryClicked() {
+        startActivityWithExtra("grain products");
+    }
+
+    @OnClick(R.id.meats_box) void onMeatCategoryClicked() {
+        startActivityWithExtra("meat and alternatives");
+    }
+
+    @OnClick(R.id.other_foods_box) void onOtherFoodsCategory() {
+        startActivityWithExtra("other foods");
+    }
+
+    void startActivityWithExtra(String extra) {
+        Intent i = new Intent(getActivity(), FoodTypeSelectionActivity.class);
+        i.putExtra("food group selected", extra);
+        startActivity(i);
     }
 
     @Override
@@ -106,32 +120,6 @@ public class HealthyCounterFragment extends Fragment implements  View.OnClickLis
         } else {
             calorieCounterText.setText("0");
         }
-    }
-    @Override
-    public void onClick(View view) {
-        String foodGroupSelected = "";
-        switch(view.getId()) {
-            case R.id.dairy_box:
-                foodGroupSelected = "milk and alternatives";
-                break;
-            case R.id.fruits_and_vegetables_box:
-                foodGroupSelected = "fruits and vegetables";
-                break;
-            case R.id.grains_box:
-                foodGroupSelected = "grain products";
-                break;
-            case R.id.meats_box:
-                foodGroupSelected = "meat and alternatives";
-                break;
-            case R.id.other_foods_box:
-                foodGroupSelected = "other foods";
-                break;
-            default:
-                break;
-        }
-        Intent i = new Intent(getActivity(), FoodTypeSelectionActivity.class);
-        i.putExtra("food group selected", foodGroupSelected);
-        startActivity(i);
     }
 
     public interface OnFragmentInteractionListener {

@@ -99,12 +99,10 @@ public class Dashboard extends AppCompatActivity implements DashboardFragment.On
                         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         Calendar calendar = Calendar.getInstance();
-                        //Date today = calendar.getTime();
                         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
                         calendar.add(Calendar.DAY_OF_YEAR, 1);
                         Date tomorrow = calendar.getTime();
                         String tomorrowAsString = dateFormat.format(tomorrow);
-                        //String todayAsString = dateFormat.format(today);
                         calendar.add(Calendar.DAY_OF_YEAR, 1);
                         editor.putInt(tomorrowAsString, sharedPref.getInt(tomorrowAsString, 0) + 1);
                         int currentTaskNumberAdded = sharedPref.getInt(tomorrowAsString, 0);
