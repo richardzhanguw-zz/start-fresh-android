@@ -1,6 +1,8 @@
 package com.androidapp.richard.startfresh.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.androidapp.richard.startfresh.AdaptersAndOtherClasses.SpendingTrackerItem;
@@ -24,6 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class SpendingTracker extends Fragment {
@@ -42,6 +48,7 @@ public class SpendingTracker extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.spendingtracker, container, false);
+        ButterKnife.bind(this, view);
         final TextView amountLeftTextView = (TextView) view.findViewById(R.id.amount_left_text_view);
         final ListView listView = (ListView) view.findViewById(R.id.spending_tracker_list_view);
         FirebaseApp.initializeApp(getContext());
@@ -84,6 +91,38 @@ public class SpendingTracker extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @OnClick(R.id.add_new_spending_item_button) void onAddNewSpendingItemClicked () {
+        View dialogView = View.inflate(getContext(), R.layout.add_new_spending_item_dialog_box, null);
+        final EditText itemNameBox = (EditText) dialogView.findViewById(R.id.item_name_edit_text);
+        final EditText itemPricebox = (EditText) dialogView.findViewById(R.id.item_price_edit_text);
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        FirebaseApp.initializeApp(getContext());
+                        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+                        Date date = new Date();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-yyyy");
+                        String monthAndYear = dateFormat.format(date);
+                        dbRef.child("spending tracker list").child("list items").child(monthAndYear).child(date.toString()).child("name").setValue(itemNameBox.getText().toString());
+                        dbRef.child("spending tracker list").child("list items").child(monthAndYear).child(date.toString()).child("price").setValue(itemPricebox.getText().toString());
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        };
+        AlertDialog.Builder  adbuilder = new AlertDialog.Builder(getContext());
+        adbuilder.setNegativeButton("Cancel", dialogClickListener)
+                .setPositiveButton("Add Item", dialogClickListener)
+                .setCancelable(true)
+                .setTitle("Add a New Item")
+                .setView(dialogView)
+                .show();
     }
 
     @Override
