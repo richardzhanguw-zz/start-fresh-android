@@ -1,7 +1,7 @@
 # Start Fresh
 
 ## To Do List <br/>
-![To Do List](/app/screenshots/ToDoList.png?raw=true) <br/>
+![To Do List](/app/screenshots/ToDoList.png = 288x489) <br/>
 ## Money Tracker <br/>
 ![Money Tracker](/app/screenshots/MoneyTracker.png?raw=true) <br/>
 ## Diet Tracker <br/>
