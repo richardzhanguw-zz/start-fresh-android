@@ -1,7 +1,7 @@
 # Start Fresh
 
 ## To Do List <br/>
-![To Do List](/app/screenshots/ToDoList.png = 288x489) <br/>
+<img src="/app/screenshots/ToDoList.png" width = "288" height = "489"/> <br/>
 ## Money Tracker <br/>
 ![Money Tracker](/app/screenshots/MoneyTracker.png?raw=true) <br/>
 ## Diet Tracker <br/>
